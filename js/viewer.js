@@ -14,7 +14,7 @@
   document.head.appendChild(link)
 })()
 
-/* H5P Viewer for Moodle — ported from DVP Toolkit for LearnDash */
+/* Viewer for H5P (Moodle). */
 ;(function () {
   'use strict'
 
@@ -45,12 +45,15 @@
 
   // Current content ID — set per-content during extraction.
   var _currentContentId = null
+  var _currentContentUrl = ''
 
   function resolveH5PPath(path) {
     if (!path) return null
     if (path.indexOf('http') === 0) return path
     var clean = path.replace(/\\\//g, '/')
-    return window.location.origin + '/wp-content/uploads/h5p/content/' + _currentContentId + '/' + clean
+    // Moodle gives each item's folder (contentUrl, e.g. /pluginfile.php/1/core_h5p/content/1).
+    if (_currentContentUrl) return _currentContentUrl.replace(/\/$/, '') + '/' + clean
+    return ''
   }
 
   function getElementImage(el) {
@@ -471,9 +474,14 @@
   var _qIdCounter = 0
 
   function buildPanel(allData) {
-    var root = document.getElementById('h5p-viewer-root')
-    if (!root) return
     if (!allData || !allData.length) return
+    var root = document.getElementById('h5p-viewer-root')
+    if (!root) {
+      // The viewer's own container, at the end of the page.
+      root = document.createElement('div')
+      root.id = 'h5p-viewer-root'
+      document.body.appendChild(root)
+    }
     root.innerHTML = ''
     root.setAttribute('aria-hidden', 'false')
 
@@ -481,7 +489,7 @@
     var toggle = document.createElement('button')
     toggle.id = 'h5p-viewer-toggle'
     toggle.className = 'h5p-viewer-toggle'
-    toggle.title = 'H5P Viewer'
+    toggle.title = 'Viewer for H5P'
     toggle.innerHTML = '<span class="h5p-viewer-toggle-icon">H5P</span><span class="h5p-viewer-toggle-badge">' + allData.length + '</span>'
     root.appendChild(toggle)
 
@@ -490,12 +498,12 @@
     panel.id = 'h5p-viewer-panel'
     panel.className = 'h5p-viewer-panel h5p-viewer-panel--closed'
     panel.setAttribute('role', 'dialog')
-    panel.setAttribute('aria-label', 'H5P Viewer')
+    panel.setAttribute('aria-label', 'Viewer for H5P')
     root.appendChild(panel)
 
     // Header
     var header = el('div', 'h5p-viewer-header')
-    header.innerHTML = '<span class="h5p-viewer-title">H5P Viewer</span>'
+    header.innerHTML = '<span class="h5p-viewer-title">Viewer for H5P</span>'
     var closeBtn = el('button', 'h5p-viewer-close')
     closeBtn.innerHTML = '&times;'
     closeBtn.title = 'Close'
@@ -807,6 +815,7 @@
 
       var c = contents[cid]
       _currentContentId = id
+      _currentContentUrl = (contents[cid] && contents[cid].contentUrl) || ''
       var library = c.library || ''
       var params = safeJson(c.jsonContent)
       var topLoc = 'Root'
