@@ -21,7 +21,7 @@ The capability **local/viewerforh5p:view**: editing teachers and managers by def
 
 ## Why it matters
 
-Moodle shows H5P inside a frame (`/h5p/embed.php`), and that frame gets each item's full settings, **answers included**, in `H5PIntegration` (`public/h5p/classes/player.php` in Moodle 5.x). The viewer only reads what's already there. Every learner's browser has it too, where anyone can read it with the developer tools: H5P as it ships can't be trusted for real testing. The fix, **Secure Answers for H5P**, is coming to Moodle.
+Moodle shows H5P inside a frame (`/h5p/embed.php`), and that frame gets each item's full settings, **answers included**, in `H5PIntegration` (`public/h5p/classes/player.php` in Moodle 5.x). The viewer only reads what's already there. Every learner's browser has it too, where anyone can read it with the developer tools: H5P as it ships can't be trusted for real testing.
 
 ## Install
 
@@ -30,6 +30,14 @@ Moodle shows H5P inside a frame (`/h5p/embed.php`), and that frame gets each ite
 3. Open an H5P activity as a teacher: the **H5P** button is in the bottom-right corner.
 
 Requires Moodle 4.1 or later. Tested on Moodle 4.5.16 (LTS) with PHP 8.2 and MySQL 8.4.
+
+## Support
+
+Report bugs and ask for features in the [issue tracker](https://github.com/pfkellogg/moodle-viewer-for-h5p/issues).
+
+## Licence
+
+GNU GPL v3 or later (see `LICENSE`).
 
 ## Privacy
 
