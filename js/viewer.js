@@ -36,9 +36,9 @@
   }
 
   function stripHtml(html) {
-    var tmp = document.createElement('div')
-    tmp.innerHTML = html || ''
-    return tmp.textContent || tmp.innerText || ''
+    // DOMParser makes an inert document: no scripts run and no images load (a div's innerHTML would load them).
+    var doc = new DOMParser().parseFromString(String(html || ''), 'text/html')
+    return doc.body ? doc.body.textContent || '' : ''
   }
 
   // ─── Image helpers ────────────────────────────────────────────────────────
