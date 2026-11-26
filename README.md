@@ -12,7 +12,8 @@ Open any Moodle page with H5P (an H5P activity, or H5P embedded in a page, label
 
 * its content type and title
 * every question, with every answer, the correct ones marked
-* the questions inside Question Sets, Interactive Videos (with their times), Course Presentations, Columns and Branching Scenarios
+* every H5P type that has right answers: Multiple Choice, True/False, Fill in the Blanks (and Advanced), Drag and Drop, Drag the Words, Mark the Words, Single Choice Set, Summary, Flashcards, Dialog Cards, Image Choice, Find the Hotspot, Find Multiple Hotspots, Sort the Paragraphs, Image Sequencing, Dictation, Crossword, Find the Words, Guess the Answer, Speak the Words, Essay keywords, Image Pairing and Memory Game
+* the questions inside Question Sets, Interactive Videos (with their times), Course Presentations, Columns, Branching Scenarios, Accordions, Interactive Books, Game Maps and Image Hotspots
 * its xAPI coverage
 
 ## Who sees it

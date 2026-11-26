@@ -21,7 +21,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_viewerforh5p';
-$plugin->version   = 2026112501;
+$plugin->version   = 2026112600;
 $plugin->requires  = 2022112800; // Moodle 4.1.
 $plugin->maturity  = MATURITY_BETA;
-$plugin->release   = '1.0.2';
+$plugin->release   = '1.1.0';
